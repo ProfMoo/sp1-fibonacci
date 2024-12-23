@@ -1,7 +1,8 @@
 # SP1 Project Template
 
-This is a template for creating an end-to-end [SP1](https://github.com/succinctlabs/sp1) project
-that can generate a proof of any RISC-V program.
+This is a template for creating an end-to-end [SP1](https://github.com/succinctlabs/sp1) project that can generate a proof of any RISC-V program.
+
+I've used [the quickstart guide](https://docs.succinct.xyz/docs/getting-started/quickstart) to get this repo up and running.
 
 ## Requirements
 
