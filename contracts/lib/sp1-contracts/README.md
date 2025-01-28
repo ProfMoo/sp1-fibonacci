@@ -22,13 +22,13 @@ pragma solidity ^0.8.20;
 import {ISP1Verifier} from "@sp1-contracts/ISP1Verifier.sol";
 
 contract MyContract {
-	address public constant SP1_VERIFIER = 0x3B6041173B80E77f038f3F2C0f9744f04837185e;
+ address public constant SP1_VERIFIER = 0x3B6041173B80E77f038f3F2C0f9744f04837185e;
 
-	bytes32 public constant PROGRAM_VKEY = ...;
+ bytes32 public constant PROGRAM_VKEY = ...;
 
-	function myFunction(..., bytes calldata publicValues, bytes calldata proofBytes) external {
-		ISP1Verifier(SP1_VERIFIER).verifyProof(PROGRAM_VKEY, publicValues, proofBytes);
-	}
+ function myFunction(..., bytes calldata publicValues, bytes calldata proofBytes) external {
+  ISP1Verifier(SP1_VERIFIER).verifyProof(PROGRAM_VKEY, publicValues, proofBytes);
+ }
 }
 ```
 
@@ -37,9 +37,9 @@ You can obtain the correct `SP1_VERIFIER` address for your chain by looking in t
 You can obtain the correct `PROGRAM_VKEY` for your program calling the `setup` function for your ELF:
 
 ```rs
-    let client = ProverClient::new();
-    let (_, vk) = client.setup(ELF);
-    println!("PROGRAM_VKEY = {}", vk.bytes32());
+let client = ProverClient::new();
+let (_, vk) = client.setup(ELF);
+println!("PROGRAM_VKEY = {}", vk.bytes32());
 ```
 
 ### Deployments
