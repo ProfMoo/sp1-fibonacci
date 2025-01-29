@@ -26,7 +26,7 @@ fn main() {
     // Setup the prover client.
     let client = ProverClient::from_env();
 
-    let (pk, vk) = client.setup(FIBONACCI_ELF);
+    let (_pk, vk) = client.setup(FIBONACCI_ELF);
 
     println!("Verifying Key: {}", vk.bytes32());
 }
