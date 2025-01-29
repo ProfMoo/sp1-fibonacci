@@ -1,7 +1,6 @@
-use alloy_sol_types::SolType;
 use clap::Parser;
-use fibonacci_lib::PublicValuesStruct;
-use sp1_sdk::{include_elf, HashableKey, ProverClient, SP1Stdin};
+use sp1_sdk::HashableKey;
+use sp1_sdk::{include_elf, ProverClient};
 
 /// The ELF (executable and linkable format) file for the Succinct RISC-V zkVM.
 pub const FIBONACCI_ELF: &[u8] = include_elf!("fibonacci-program");
@@ -25,13 +24,7 @@ fn main() {
     sp1_sdk::utils::setup_logger();
 
     // Setup the prover client.
-    let client = ProverClient::new();
-
-    // Setup the inputs.
-    let mut stdin = SP1Stdin::new();
-    stdin.write(&args.n);
-
-    println!("n: {}", args.n);
+    let client = ProverClient::from_env();
 
     let (pk, vk) = client.setup(FIBONACCI_ELF);
 

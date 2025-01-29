@@ -10,7 +10,7 @@ In summary, this repo has 3 components:
 
 3. Runs a verification of the proof against the deployed contract on Base Sepolia.
 
-## Running the Project
+## Generate a Proof
 
 Ensure [all the tools are installed](https://docs.succinct.xyz/docs/getting-started/install)
 
@@ -76,19 +76,13 @@ command:
 SP1_PROVER=network NETWORK_PRIVATE_KEY=... cargo run --release --bin evm
 ```
 
-### Retrieve the Verification Key
+#### My Output
 
-To retrieve your `programVKey` for your on-chain contract, run the following command:
-
-```sh
-cargo prove vkey --program fibonacci-program
-```
-
-## My Output
+My public key that was whitelisted on the prover network: `0xb05B580f69842b706c63b17474545C96253Ef726`
 
 My generated proof info:
 
-### SP1 3.x Proof
+##### SP1 3.x Proof
 
 ```text
 Proof System: Groth16
@@ -99,7 +93,7 @@ Proof Bytes: 0x09069090287c42583708a57a595644ffd85c7065eb7c48031884788540472077e
 
 <https://explorer.succinct.xyz/proof/01jftfw3haek0s24114jzk0vzf>
 
-### SP1 4.x Proof
+##### SP1 4.x Proof
 
 ```text
 Proof System: Groth16
@@ -108,7 +102,24 @@ Public Values: 0x000000000000000000000000000000000000000000000000000000000000001
 Proof Bytes: 0x11b6a09d004bbc3bebb32e151f729c81dcecc9b92e80584f0b463b90f53b000729945901069d604bfcbcfc8a85380ba5fa280c2ceb84276be6d162c6be869c519447a34628e4b041fa0e64c7c9c6893b89a3e10370813784a85f55f2fec37e7c429a44d021b6eac57d7515f8e9b90c8cfd970ffc91b3e70a5ddd9c3d3d38978576f52b520cf2259f01d406472a5c102f3220edb1257accd344b96aa98fd3a92ab45fa8c0281c17b317b1bc22cd08446b812bffbdf08842de3e75680141bdc6cc2a2927b81ad86a6388f8309e53a5bc8e6b17a7b3b2ed7cd81d292c4176e11970c858bbce19cc2ff5e3ee2920ccbc4ef6a17b70a834948d62a2a7d8f04f0cd1e59d439f51
 ```
 
-My deployed contract: <https://sepolia.basescan.org/address/0x2c57d7251f900afc4527ae5cd3dc66be729b01ea>
-Verifier I used onchain: `0x397A5f7f3dBd538f23DE225B51f532c34448dA9B`, sourced from [these docs](https://docs.succinct.xyz/docs/verification/onchain/contract-addresses).
+<https://network.succinct.xyz/request/0x4b81465f6827c9652364d61175e56d2a75b7d5ed16ac45fba3a4adaf619070d0>
 
-My `programVKey` (i.e. program verfication key): `0x00a10dc86319b7fa6c59de356b9edb4f4be468c337b025a8c0d1e519a6412abf`
+## Verify Your Proof Onchain
+
+### Retrieve the Verification Key
+
+To retrieve your `programVKey` for your on-chain contract, run the following command:
+
+```sh
+cargo prove vkey --program fibonacci-program
+```
+
+My `programVKey` (i.e. `PROGRAM_VKEY`, or program verfication key) is`0x00a10dc86319b7fa6c59de356b9edb4f4be468c337b025a8c0d1e519a6412abf`
+
+### Deploy the Smart Contract
+
+Following the instructions [here](./contracts/README.md#deployment).
+
+Verifier gateway contract I used onchain (i.e. `VERIFIER`): `0x397A5f7f3dBd538f23DE225B51f532c34448dA9B`. Sourced from [these docs](https://docs.succinct.xyz/docs/verification/onchain/contract-addresses).
+
+My deployed contract: <https://sepolia.basescan.org/address/0x2c57d7251f900afc4527ae5cd3dc66be729b01ea>
