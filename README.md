@@ -122,4 +122,52 @@ Following the instructions [here](./contracts/README.md#deployment).
 
 Verifier gateway contract I used onchain (i.e. `VERIFIER`): `0x397A5f7f3dBd538f23DE225B51f532c34448dA9B`. Sourced from [these docs](https://docs.succinct.xyz/docs/verification/onchain/contract-addresses).
 
-My deployed contract: <https://sepolia.basescan.org/address/0x2c57d7251f900afc4527ae5cd3dc66be729b01ea>
+My wallet used for deploying the smart contract: `0xdb816889F2a7362EF242E5a717dfD5B38Ae849FE`
+
+My deployed contract output on Base Sepolia:
+
+```text
+Deployer: 0xdb816889F2a7362EF242E5a717dfD5B38Ae849FE
+Deployed to: 0xC1BD513c00Cd5FB2b4de1f8ad43a32629650DE43
+Transaction hash: 0xb2ba30cb386eb8bf449197413427a17ba915e61ffc36b86d51bd8c0090710454
+```
+
+### Verify the Smart Contract
+
+Verify the smart contract onchain (optional):
+
+```bash
+forge verify-contract \
+    --chain-id 84532 \
+    --compiler-version v0.8.28 \
+    0xC1BD513c00Cd5FB2b4de1f8ad43a32629650DE43 \
+    src/Fibonacci.sol:Fibonacci \
+    --etherscan-api-key $ETHERSCAN_API_KEY \
+    --constructor-args $(cast abi-encode "constructor(address,bytes32)" $VERIFIER $PROGRAM_VKEY) -v
+```
+
+This ensures the contract landed onchain correctly, can be verified by outside parties, and shows up correctly in GUIs.
+
+This command was very finicky for some reason - I had to try 5+ times for it to work.
+
+My output GUID: `vet5p4gigu5h8irkbdu4hvdbsefbprwnsftht8elfqapp8yshr`
+
+### Verify The Proof
+
+To verify offchain, go to [verify](./verify):
+
+```bash
+npm run verify
+```
+
+This will create a real transaction onchain confirming that the computation (i.e. Fibonacci) is correct based on the inputs and the proof only. No need to re-compute the data!
+
+My outputs:
+
+```text
+Transaction hash: 0xe1993a5a2aa594d33eeb3be42d4229e98d05e83a2da727b4b5bcad1819cca669
+Transaction confirmed in block: 21199009
+Gas used: 53000
+```
+
+<https://sepolia.basescan.org/tx/0xe1993a5a2aa594d33eeb3be42d4229e98d05e83a2da727b4b5bcad1819cca669>
