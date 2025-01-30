@@ -81,9 +81,13 @@ const abi = [
 ];
 
 async function main() {
-  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
+  const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
   const contractAddress = "0xC1BD513c00Cd5FB2b4de1f8ad43a32629650DE43";
+
+  // Look up the current block number (i.e. height)
+  const blockNumber = await provider.getBlockNumber();
+  console.log("Block number:", blockNumber);
 
   // Example values from your README
   const publicValues =
@@ -95,12 +99,11 @@ async function main() {
   const contract = new ethers.Contract(contractAddress, abi, wallet);
 
   try {
-    console.log("Calling contract...");
     const tx = await contract.verifyFibonacciProof(publicValues, proofBytes, {
       gasLimit: 1000000,
     });
-    await tx.wait();
-    console.log("tx:", tx);
+
+    console.log(tx);
   } catch (error) {
     console.error(error);
   }

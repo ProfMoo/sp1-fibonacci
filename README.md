@@ -160,14 +160,14 @@ To verify offchain, go to [verify](./verify):
 npm run verify
 ```
 
-This will create a real transaction onchain confirming that the computation (i.e. Fibonacci) is correct based on the inputs and the proof only. No need to re-compute the data!
-
-My outputs:
+If the output looks like this, then you have successfully verified the proof:
 
 ```text
-Transaction hash: 0xe1993a5a2aa594d33eeb3be42d4229e98d05e83a2da727b4b5bcad1819cca669
-Transaction confirmed in block: 21199009
-Gas used: 53000
+Result(3) [ 20n, 6765n, 10946n
 ```
 
-<https://sepolia.basescan.org/tx/0xe1993a5a2aa594d33eeb3be42d4229e98d05e83a2da727b4b5bcad1819cca669>
+You can sanity check by changing the public values slightly and seeing the tx revert:
+
+```text
+shortMessage: 'execution reverted (unknown custom error)'
+```
